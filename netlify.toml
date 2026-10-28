@@ -1,0 +1,19 @@
+[build]
+  publish = "public"
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Trang admin không cho Google lập chỉ mục, không cache
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
+    Referrer-Policy = "no-referrer"
+
+[[headers]]
+  for = "/catalog-seed.json"
+  [headers.values]
+    Cache-Control = "no-store"

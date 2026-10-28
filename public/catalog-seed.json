@@ -1,0 +1,321 @@
+{
+ "version": 1,
+ "updatedAt": null,
+ "products": [
+  {
+   "id": "coi-mo",
+   "name": "Cói Mơ",
+   "cat": "C",
+   "image": "images/img-04.jpg",
+   "images": [],
+   "price": 350,
+   "prices": null,
+   "descVi": "Bèo nhún sọc hồng chấm hoa",
+   "descEn": "Ruffle in pink stripes and tiny dots",
+   "specVi": "Đan tay · quai da nâu · lót bèo vải hoa",
+   "specEn": "Hand-woven · brown leather handles · floral ruffle lining",
+   "soldOut": false,
+   "soldOutSizes": [],
+   "colors": [],
+   "hidden": false
+  },
+  {
+   "id": "coi-san",
+   "name": "Cói San",
+   "cat": "C",
+   "image": "images/img-06.jpg",
+   "images": [],
+   "price": 350,
+   "prices": null,
+   "descVi": "Bèo nhún hoa nhí xanh và vàng",
+   "descEn": "Ruffle in blue and yellow ditsy florals",
+   "specVi": "Đan tay · quai da nâu · lót bèo vải hoa",
+   "specEn": "Hand-woven · brown leather handles · floral ruffle lining",
+   "soldOut": false,
+   "soldOutSizes": [],
+   "colors": [],
+   "hidden": false
+  },
+  {
+   "id": "coi-thao",
+   "name": "Cói Thảo",
+   "cat": "C",
+   "image": "images/img-08.jpg",
+   "images": [],
+   "price": 350,
+   "prices": null,
+   "descVi": "Bèo nhún hoa dây leo hồng nhí, lót kem",
+   "descEn": "Ruffle in pink trellis florals, cream underlayer",
+   "specVi": "Đan tay · quai da nâu · lót bèo vải hoa",
+   "specEn": "Hand-woven · brown leather handles · floral ruffle lining",
+   "soldOut": false,
+   "soldOutSizes": [],
+   "colors": [],
+   "hidden": false
+  },
+  {
+   "id": "bow-bag",
+   "name": "Bow Bag",
+   "cat": "T",
+   "image": "images/img-10.jpg",
+   "images": [],
+   "price": 280,
+   "prices": null,
+   "descVi": "Nơ buộc vai · đáy 35 · cao 20 cm",
+   "descEn": "Shoulder bow · base 35 · height 20 cm",
+   "specVi": "Đáy 35cm · Cao đáy–miệng 20cm · Cao đáy–vai 35cm",
+   "specEn": "Base 35cm · Height base–opening 20cm · Height base–shoulder 35cm",
+   "soldOut": false,
+   "soldOutSizes": [],
+   "colors": [
+    {
+     "key": "xanh",
+     "vi": "Xanh",
+     "en": "Blue",
+     "hex": "#9ec3e6",
+     "image": "",
+     "soldOut": false
+    },
+    {
+     "key": "nau",
+     "vi": "Nâu",
+     "en": "Brown",
+     "hex": "#8a5a44",
+     "image": "",
+     "soldOut": false
+    },
+    {
+     "key": "hong-dam",
+     "vi": "Hồng đậm",
+     "en": "Hot pink",
+     "hex": "#d9577f",
+     "image": "",
+     "soldOut": false
+    },
+    {
+     "key": "hong-nhat",
+     "vi": "Hồng nhạt",
+     "en": "Light pink",
+     "hex": "#f5c6d2",
+     "image": "",
+     "soldOut": false
+    }
+   ],
+   "hidden": false
+  },
+  {
+   "id": "tote-bag-white",
+   "name": "Tote Bag (white)",
+   "cat": "T",
+   "image": "images/img-11.jpg",
+   "images": [],
+   "price": 280,
+   "prices": null,
+   "descVi": "Chần bông trắng, nơ hồng · 30×25 cm",
+   "descEn": "White quilted, pink bow · 30×25 cm",
+   "specVi": "Đáy 30cm · Cao 25cm · Miệng 37cm",
+   "specEn": "Base 30cm · Height 25cm · Opening 37cm",
+   "soldOut": false,
+   "soldOutSizes": [],
+   "colors": [],
+   "hidden": false
+  },
+  {
+   "id": "tote-bag-dreamy-pink",
+   "name": "Tote Bag (dreamy pink)",
+   "cat": "T",
+   "image": "images/img-12.jpg",
+   "images": [],
+   "price": 280,
+   "prices": null,
+   "descVi": "Chần bông lót hồng, nơ nâu · 30×25 cm",
+   "descEn": "Quilted, pink lining, brown bow · 30×25 cm",
+   "specVi": "Đáy 30cm · Cao 25cm · Miệng 37cm",
+   "specEn": "Base 30cm · Height 25cm · Opening 37cm",
+   "soldOut": false,
+   "soldOutSizes": [],
+   "colors": [],
+   "hidden": false
+  },
+  {
+   "id": "blueberry-pouch",
+   "name": "Blueberry Pouch",
+   "cat": "B",
+   "image": "images/img-13.jpg",
+   "images": [],
+   "price": null,
+   "prices": [
+    105,
+    130
+   ],
+   "descVi": "Hoa nhí xanh nhạt, lót xanh",
+   "descEn": "Pale blue florals, blue lining",
+   "specVi": "",
+   "specEn": "",
+   "soldOut": false,
+   "soldOutSizes": [],
+   "colors": [],
+   "hidden": false
+  },
+  {
+   "id": "rosy-ruffle",
+   "name": "Rosy Ruffle",
+   "cat": "B",
+   "image": "images/img-14.jpg",
+   "images": [],
+   "price": null,
+   "prices": [
+    105,
+    130
+   ],
+   "descVi": "Bèo nhún hoa hồng",
+   "descEn": "Rose-print ruffle",
+   "specVi": "",
+   "specEn": "",
+   "soldOut": false,
+   "soldOutSizes": [],
+   "colors": [],
+   "hidden": false
+  },
+  {
+   "id": "creamy-ruffle",
+   "name": "Creamy Ruffle",
+   "cat": "B",
+   "image": "images/img-15.jpg",
+   "images": [],
+   "price": null,
+   "prices": [
+    105,
+    130
+   ],
+   "descVi": "Bèo nhún tông kem",
+   "descEn": "Cream ruffle",
+   "specVi": "",
+   "specEn": "",
+   "soldOut": false,
+   "soldOutSizes": [],
+   "colors": [],
+   "hidden": false
+  },
+  {
+   "id": "grape-ruffle",
+   "name": "Grape Ruffle",
+   "cat": "B",
+   "image": "images/img-16.jpg",
+   "images": [],
+   "price": null,
+   "prices": [
+    105,
+    130
+   ],
+   "descVi": "Bèo nhún hoa nhí tím",
+   "descEn": "Lilac floral ruffle",
+   "specVi": "",
+   "specEn": "",
+   "soldOut": false,
+   "soldOutSizes": [],
+   "colors": [],
+   "hidden": false
+  },
+  {
+   "id": "flora-ruffle",
+   "name": "Flora Ruffle",
+   "cat": "B",
+   "image": "images/img-17.jpg",
+   "images": [],
+   "price": null,
+   "prices": [
+    105,
+    130
+   ],
+   "descVi": "Bèo nhún hoa, lót hồng",
+   "descEn": "Floral ruffle, pink lining",
+   "specVi": "",
+   "specEn": "",
+   "soldOut": false,
+   "soldOutSizes": [],
+   "colors": [],
+   "hidden": false
+  },
+  {
+   "id": "strawberry-matcha",
+   "name": "Strawberry Matcha",
+   "cat": "B",
+   "image": "images/img-18.jpg",
+   "images": [],
+   "price": null,
+   "prices": [
+    105,
+    130
+   ],
+   "descVi": "Xanh matcha, viền hồng dâu",
+   "descEn": "Matcha green, strawberry-pink trim",
+   "specVi": "",
+   "specEn": "",
+   "soldOut": false,
+   "soldOutSizes": [],
+   "colors": [],
+   "hidden": false
+  },
+  {
+   "id": "dreamy-rabbit-pink",
+   "name": "Dreamy Rabbit (pink)",
+   "cat": "S",
+   "image": "images/img-19.jpg",
+   "images": [],
+   "price": null,
+   "prices": [
+    120,
+    140
+   ],
+   "descVi": "Chần bông, tông hồng",
+   "descEn": "Quilted, pink tone",
+   "specVi": "",
+   "specEn": "",
+   "soldOut": false,
+   "soldOutSizes": [],
+   "colors": [],
+   "hidden": false
+  },
+  {
+   "id": "dreamy-rabbit-white",
+   "name": "Dreamy Rabbit (white)",
+   "cat": "S",
+   "image": "images/img-20.jpg",
+   "images": [],
+   "price": null,
+   "prices": [
+    120,
+    140
+   ],
+   "descVi": "Chần bông, tông trắng",
+   "descEn": "Quilted, white tone",
+   "specVi": "",
+   "specEn": "",
+   "soldOut": false,
+   "soldOutSizes": [],
+   "colors": [],
+   "hidden": false
+  },
+  {
+   "id": "rapunzel-pouch",
+   "name": "Rapunzel Pouch",
+   "cat": "S",
+   "image": "images/img-21.jpg",
+   "images": [],
+   "price": null,
+   "prices": [
+    120,
+    140
+   ],
+   "descVi": "Hoa nhí, lót kem",
+   "descEn": "Little florals, cream lining",
+   "specVi": "",
+   "specEn": "",
+   "soldOut": false,
+   "soldOutSizes": [],
+   "colors": [],
+   "hidden": false
+  }
+ ]
+}

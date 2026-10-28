@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="only light">
+<title>Limdim Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--head:#4a2c33;--ink:#6b4a50;--soft:#8c6c72;--page:#f4f2e6;--card:#fffdfa;--edge:#eadfd6;--accent:#e8a3b1;--ok:#4f7a4a;--okbg:#e4eddc;--bad:#b3334a;--badbg:#f8dde2;color-scheme:only light}
+*{box-sizing:border-box}
+html{background:var(--page)}
+body{margin:0;font:400 15px/1.55 "Plus Jakarta Sans",system-ui,sans-serif;color:var(--ink);background:var(--page);min-height:100vh}
+[hidden]{display:none!important}
+h1,h2,h3{font-family:Newsreader,Georgia,serif;font-weight:400;color:var(--head);letter-spacing:-.02em;margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--head);outline-offset:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 20px;border-radius:999px;border:1.5px solid var(--head);background:transparent;color:var(--head);font:500 12px "Plus Jakarta Sans",sans-serif;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;white-space:nowrap}
+.btn.fill{background:var(--head);color:#fff8f2}
+.btn.danger{border-color:var(--bad);color:var(--bad)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.sm{padding:7px 14px;font-size:11px}
+
+/* login */
+#login{min-height:100vh;display:grid;place-items:center;padding:24px}
+.lbox{width:min(400px,100%);background:var(--card);border:1px solid var(--edge);border-radius:32px;padding:34px 30px;box-shadow:0 24px 60px rgba(120,80,70,.14);text-align:center}
+.lbox h1{font-size:40px;margin-bottom:4px}
+.lbox p{margin:0 0 22px;color:var(--soft)}
+.lbox input{width:100%;padding:14px 18px;border-radius:999px;border:1.5px solid rgba(140,108,114,.5);background:#fff;font:inherit;color:var(--head);text-align:center;margin-bottom:12px}
+.lbox .btn{width:100%;padding:14px}
+.err{margin:12px 0 0;color:var(--bad);font-size:13.5px;min-height:20px}
+
+/* shell */
+header.bar{position:sticky;top:0;z-index:20;background:rgba(244,242,230,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--edge)}
+.bar .in{max-width:960px;margin:auto;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.bar h1{font-size:26px;margin-right:auto}
+.bar h1 small{font:500 11px "Plus Jakarta Sans";letter-spacing:.16em;text-transform:uppercase;color:var(--soft);margin-left:8px}
+#stat{font-size:12.5px;color:var(--soft)}
+main{max-width:960px;margin:auto;padding:18px 16px 90px}
+.note{background:#fff7e6;border:1px dashed #d8b86a;border-radius:18px;padding:12px 16px;margin-bottom:16px;font-size:14px;color:#6d5413}
+.note.warn{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.sum{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.sum div{background:var(--card);border:1px solid var(--edge);border-radius:18px;padding:10px 18px}
+.sum b{display:block;font:400 28px/1.1 Newsreader,serif;color:var(--head)}
+.sum span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.tools input[type=search]{flex:1;min-width:150px;padding:10px 16px;border-radius:999px;border:1.5px solid rgba(140,108,114,.45);background:#fff;font:inherit;color:var(--head)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.chip{border:1.5px solid rgba(140,108,114,.5);background:transparent;border-radius:999px;padding:7px 14px;font:500 12px "Plus Jakarta Sans";letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+.chip[aria-pressed=true]{background:var(--head);border-color:var(--head);color:#fff8f2}
+.chk{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;color:var(--ink)}
+.chk input{width:18px;height:18px;accent-color:var(--head)}
+
+/* product cards */
+.list{display:grid;gap:12px}
+.card{display:grid;grid-template-columns:84px 1fr auto;gap:14px;align-items:center;background:var(--card);border:1px solid var(--edge);border-radius:24px;padding:12px 14px 12px 12px}
+.card.so{background:#fbf6f4}
+.card.hid{opacity:.7}
+.th{width:84px;height:100px;object-fit:cover;border-radius:16px;background:#f0e6df}
+.card.so .th{filter:grayscale(.7);opacity:.7}
+.mid h3{font-size:24px;line-height:1.15;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline}
+.pill{display:inline-block;padding:2px 10px;border-radius:999px;background:#f3e8e2;color:var(--soft);font:500 10.5px/1.6 "Plus Jakarta Sans";letter-spacing:.1em;text-transform:uppercase}
+.pill.bad{background:var(--badbg);color:var(--bad)}
+.price{font-weight:600;color:var(--head);font-size:14px;margin:2px 0 6px}
+.var{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.var .lbl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin-right:2px}
+.vc{display:inline-flex;align-items:center;gap:6px;border:1.5px solid rgba(79,122,74,.55);background:var(--okbg);color:var(--ok);border-radius:999px;padding:4px 11px 4px 6px;font:500 12.5px "Plus Jakarta Sans"}
+.vc i{width:14px;height:14px;border-radius:50%;border:1.5px solid rgba(74,44,51,.3)}
+.vc.sz{padding-left:11px}
+.vc.off{border-color:rgba(179,51,74,.55);background:var(--badbg);color:var(--bad)}
+.vc.off span{text-decoration:line-through}
+.vc em{font-style:normal;font-size:11px}
+.act{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.sw{display:inline-flex;align-items:center;gap:10px;padding:5px 14px 5px 5px;border-radius:999px;border:0;background:var(--okbg);color:var(--ok);font:600 12px "Plus Jakarta Sans";letter-spacing:.1em;text-transform:uppercase;min-width:136px}
+.sw .knob{width:30px;height:30px;border-radius:50%;background:var(--ok);display:grid;place-items:center;color:#fff;font-size:15px;transition:transform .2s}
+.sw[aria-checked=false]{background:var(--badbg);color:var(--bad)}
+.sw[aria-checked=false] .knob{background:var(--bad)}
+.row2{display:flex;gap:6px;align-items:center}
+.ico{width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(140,108,114,.45);background:transparent;color:var(--head);font-size:15px;line-height:1}
+.ico:disabled{opacity:.35}
+.empty{text-align:center;padding:40px 10px;color:var(--soft)}
+@media(max-width:620px){
+  .card{grid-template-columns:72px 1fr;align-items:start}
+  .th{width:72px;height:88px}
+  .act{grid-column:1/3;flex-direction:row;justify-content:space-between;align-items:center}
+  .sw{flex:1}
+}
+
+/* edit dialog */
+dialog{border:0;padding:0;background:transparent;width:min(720px,96vw);max-height:94vh;color:var(--ink)}
+dialog::backdrop{background:rgba(60,35,40,.5);backdrop-filter:blur(5px)}
+.dlg{background:var(--card);border-radius:30px;max-height:94vh;overflow:auto;padding:22px 22px 0;position:relative}
+.dlg h2{font-size:34px;margin-bottom:14px}
+.dx{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;border:0;background:#f3e8e2;color:var(--head);font-size:20px}
+.f{display:block;margin:0 0 14px}
+.f>span,.f legend{display:block;font:500 11px "Plus Jakarta Sans";letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin:0 0 6px;padding:0}
+.f input[type=text],.f input[type=number],.f select,.f textarea{width:100%;padding:11px 14px;border-radius:14px;border:1.5px solid rgba(140,108,114,.45);background:#fff;color:var(--head);font:inherit}
+.f textarea{min-height:60px;resize:vertical}
+fieldset.f{border:0;padding:0;min-width:0}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g3{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.g2,.g3{grid-template-columns:1fr}}
+.radios{display:flex;gap:8px;flex-wrap:wrap}
+.radios label{display:inline-flex;gap:6px;align-items:center;border:1.5px solid rgba(140,108,114,.45);border-radius:999px;padding:7px 14px;font-size:13.5px}
+.radios label:has(input:checked){border-color:var(--head);background:#f6ece6}
+.radios input{accent-color:var(--head)}
+.imgs{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-start}
+.im{position:relative;width:92px}
+.im img{width:92px;height:112px;object-fit:cover;border-radius:14px;background:#f0e6df;display:block}
+.im button.rm{position:absolute;top:-6px;right:-6px;width:24px;height:24px;border-radius:50%;border:0;background:var(--bad);color:#fff;font-size:14px;line-height:1}
+.im.add{display:grid;place-items:center;height:112px;border:1.5px dashed var(--soft);border-radius:14px;background:transparent;color:var(--soft);font-size:12px;text-align:center;padding:4px}
+.crow{display:grid;grid-template-columns:44px 1fr 1fr 64px auto;gap:8px;align-items:center;padding:10px;border:1px solid var(--edge);border-radius:16px;margin-bottom:8px;background:#fff}
+.crow input[type=color]{width:44px;height:44px;padding:2px;border:1.5px solid rgba(140,108,114,.45);border-radius:12px;background:#fff}
+.crow input[type=text]{padding:9px 12px;border-radius:12px;border:1.5px solid rgba(140,108,114,.45);width:100%;font:inherit;color:var(--head);min-width:0}
+.crow .cimg{width:64px;height:64px;border-radius:12px;border:1.5px dashed var(--soft);background:#f7efe9 center/cover no-repeat;display:grid;place-items:center;font-size:10px;color:var(--soft);text-align:center;padding:0;overflow:hidden}
+.crow .cx{display:flex;flex-direction:column;gap:6px;align-items:stretch}
+@media(max-width:560px){.crow{grid-template-columns:44px 1fr 64px;}.crow input.en{grid-column:2/4}.crow .cx{grid-column:1/4;flex-direction:row}}
+.foot{position:sticky;bottom:0;display:flex;gap:10px;flex-wrap:wrap;align-items:center;background:linear-gradient(transparent,var(--card) 28%);padding:22px 0 18px;margin-top:6px}
+.foot .sp{flex:1}
+.hint{font-size:12.5px;color:var(--soft);margin:4px 0 0}
+#toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,30px);opacity:0;pointer-events:none;background:var(--head);color:#fff8f2;padding:11px 22px;border-radius:999px;font-size:14px;z-index:200;transition:.25s;max-width:92vw;text-align:center}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+#toast.bad{background:var(--bad)}
+</style>
+</head>
+<body>
+
+<section id="login">
+  <form class="lbox" id="lform" autocomplete="on">
+    <h1>limdim.softie</h1>
+    <p>Trang quản lý shop</p>
+    <input type="text" name="username" value="admin" autocomplete="username" hidden>
+    <input type="password" id="pw" name="password" placeholder="Mật khẩu admin" autocomplete="current-password" required>
+    <button class="btn fill" type="submit" id="lbtn">Đăng nhập</button>
+    <p class="err" id="lerr" role="alert"></p>
+  </form>
+</section>
+
+<div id="app" hidden>
+  <header class="bar"><div class="in">
+    <h1>Admin <small>limdim.softie</small></h1>
+    <span id="stat"></span>
+    <a class="btn sm" href="/" target="_blank" rel="noopener">Xem shop ↗</a>
+    <button class="btn sm" id="bak" type="button" title="Tải file sao lưu toàn bộ danh mục">Sao lưu</button>
+    <button class="btn sm" id="out" type="button">Đăng xuất</button>
+  </div></header>
+
+  <main>
+    <div class="note" id="seedNote" hidden>Đây là lần đầu mở trang quản lý: dữ liệu đang lấy từ bản gốc của shop. Mỗi thay đổi bạn bấm sẽ tự động được lưu lại.</div>
+    <div class="note warn" id="errNote" hidden></div>
+    <div class="note">Bấm <b>công tắc</b> để bật/tắt <b>HẾT HÀNG</b> cho cả sản phẩm, hoặc bấm từng <b>size / màu</b> để chỉ tắt riêng phân loại đó. Khách sẽ thấy thay đổi sau khoảng 10–60 giây (hoặc khi tải lại trang), không cần deploy lại web.</div>
+
+    <div class="sum" id="sum"></div>
+    <div class="chips" id="cats" role="group" aria-label="Nhóm sản phẩm"></div>
+    <div class="tools">
+      <input type="search" id="q" placeholder="Tìm sản phẩm…" aria-label="Tìm sản phẩm">
+      <label class="chk"><input type="checkbox" id="onlySO"> Chỉ hiện món hết hàng</label>
+      <button class="btn fill" id="add" type="button">+ Thêm sản phẩm</button>
+    </div>
+    <div class="list" id="list"></div>
+  </main>
+</div>
+
+<dialog id="ed"><form class="dlg" id="eform" method="dialog" novalidate>
+  <button class="dx" type="button" id="edx" aria-label="Đóng">×</button>
+  <h2 id="edt">Sản phẩm</h2>
+
+  <div class="g2">
+    <label class="f"><span>Tên sản phẩm</span><input type="text" id="f_name" maxlength="80" required></label>
+    <label class="f"><span>Nhóm</span><select id="f_cat"></select></label>
+  </div>
+
+  <fieldset class="f"><legend>Giá bán</legend>
+    <div class="radios" id="f_mode">
+      <label><input type="radio" name="pm" value="one"> Một mức giá</label>
+      <label><input type="radio" name="pm" value="two"> Hai mức (size M / L)</label>
+      <label><input type="radio" name="pm" value="quote"> Chưa niêm yết (báo giá)</label>
+    </div>
+    <div class="g2" style="margin-top:10px" id="f_prices"></div>
+    <p class="hint">Nhập theo nghìn đồng: gõ <b>280</b> nghĩa là 280.000đ.</p>
+  </fieldset>
+
+  <fieldset class="f"><legend>Ảnh chính (ảnh hiển thị ở menu)</legend>
+    <div class="imgs" id="f_main"></div>
+  </fieldset>
+  <fieldset class="f"><legend>Ảnh phụ (xem thêm trong chi tiết sản phẩm)</legend>
+    <div class="imgs" id="f_extra"></div>
+  </fieldset>
+
+  <fieldset class="f"><legend>Phân loại màu sắc (để trống nếu sản phẩm không có màu)</legend>
+    <div id="f_colors"></div>
+    <button class="btn sm" type="button" id="addColor">+ Thêm màu</button>
+    <p class="hint">Có thể gắn ảnh riêng cho từng màu: khi khách chọn màu, ảnh sẽ đổi theo.</p>
+  </fieldset>
+
+  <div class="g2">
+    <label class="f"><span>Mô tả ngắn (Tiếng Việt)</span><textarea id="f_descVi" maxlength="300"></textarea></label>
+    <label class="f"><span>Short description (English)</span><textarea id="f_descEn" maxlength="300"></textarea></label>
+    <label class="f"><span>Kích thước / chất liệu (Tiếng Việt)</span><textarea id="f_specVi" maxlength="300"></textarea></label>
+    <label class="f"><span>Size / material (English)</span><textarea id="f_specEn" maxlength="300"></textarea></label>
+  </div>
+
+  <div class="f" style="display:flex;gap:22px;flex-wrap:wrap">
+    <label class="chk"><input type="checkbox" id="f_so"> Hết hàng (cả sản phẩm)</label>
+    <label class="chk"><input type="checkbox" id="f_hid"> Ẩn khỏi shop</label>
+  </div>
+
+  <p class="err" id="ederr" role="alert"></p>
+  <div class="foot">
+    <button class="btn danger sm" type="button" id="del">Xoá sản phẩm</button>
+    <span class="sp"></span>
+    <button class="btn" type="button" id="cancel">Huỷ</button>
+    <button class="btn fill" type="submit" id="save">Lưu sản phẩm</button>
+  </div>
+</form></dialog>
+
+<input type="file" id="file" accept="image/*" hidden>
+<div id="toast" role="status"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const CATS={C:"Túi cói",T:"Túi chần bông",B:"Basic Pouch",S:"Special Pouch"};
+const TK="ld_admin_token";
+let token="";try{token=localStorage.getItem(TK)||""}catch(e){}
+const S={products:[],cat:"all",q:"",onlySO:false};
+let draft=null,editingId=null;
+
+const imgUrl=u=>!u?"":/^(https?:|\/)/.test(u)?u:"/"+u;
+const vnd=k=>k==null?"":(Math.round(k*1000)).toString().replace(/\B(?=(\d{3})+(?!\d))/g,".")+"đ";
+const priceText=p=>p.prices?`M ${vnd(p.prices[0])} · L ${vnd(p.prices[1])}`:p.price!=null?vnd(p.price):"Báo giá";
+const derivedSO=p=>!p.soldOut&&((p.colors.length>0&&p.colors.every(c=>c.soldOut))||(p.prices&&["M","L"].every(s=>(p.soldOutSizes||[]).includes(s))));
+const isSO=p=>p.soldOut||derivedSO(p);
+
+let tt;function toast(s,bad){const x=$("#toast");x.textContent=s;x.className="on"+(bad?" bad":"");clearTimeout(tt);tt=setTimeout(()=>x.className="",2600)}
+function stamp(){$("#stat").textContent="Đã lưu "+new Date().toLocaleTimeString("vi-VN",{hour:"2-digit",minute:"2-digit"})}
+
+async function api(path,opts={}){
+  const r=await fetch("/api/admin/"+path,{...opts,headers:{...(opts.headers||{}),Authorization:"Bearer "+token}});
+  if(r.status===401&&path!=="login"){logout(true);throw new Error("Phiên đăng nhập đã hết, bạn đăng nhập lại nhé")}
+  const j=await r.json().catch(()=>({}));
+  if(!r.ok)throw new Error(j.error||("Lỗi "+r.status));
+  return j}
+const post=(p,b,m="POST")=>api(p,{method:m,headers:{"Content-Type":"application/json"},body:JSON.stringify(b)});
+
+/* ---------- login ---------- */
+function showLogin(msg){$("#app").hidden=true;$("#login").hidden=false;$("#lerr").textContent=msg||""}
+function logout(silent){token="";try{localStorage.removeItem(TK)}catch(e){}showLogin(silent?"Phiên đăng nhập đã hết.":"")}
+$("#out").onclick=()=>logout();
+$("#bak").onclick=()=>{const b=new Blob([JSON.stringify({version:1,exportedAt:new Date().toISOString(),products:S.products},null,1)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="limdim-catalog-"+new Date().toISOString().slice(0,10)+".json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000)};
+$("#lform").addEventListener("submit",async e=>{e.preventDefault();const b=$("#lbtn");b.disabled=true;$("#lerr").textContent="";
+  try{const j=await post("login",{password:$("#pw").value});token=j.token;try{localStorage.setItem(TK,token)}catch(_){}$("#pw").value="";await boot()}
+  catch(x){$("#lerr").textContent=x.message}b.disabled=false});
+
+async function boot(){
+  try{const j=await api("catalog");S.products=j.products;$("#seedNote").hidden=!j.seeded;$("#errNote").hidden=true;
+    $("#login").hidden=true;$("#app").hidden=false;if(j.updatedAt)$("#stat").textContent="Cập nhật "+new Date(j.updatedAt).toLocaleString("vi-VN");render()}
+  catch(x){if(token)showLogin(x.message);else showLogin()}}
+
+/* ---------- list ---------- */
+function render(){
+  const all=S.products,so=all.filter(isSO).length;
+  $("#sum").innerHTML=`<div><b>${all.length}</b><span>Sản phẩm</span></div><div><b>${all.length-so}</b><span>Còn hàng</span></div><div><b>${so}</b><span>Hết hàng</span></div>`;
+  $("#cats").innerHTML=[["all","Tất cả"],...Object.entries(CATS)].map(([k,v])=>`<button class="chip" data-cat="${k}" aria-pressed="${S.cat===k}">${v}</button>`).join("");
+  const q=S.q.trim().toLowerCase();
+  const vis=all.filter(p=>(S.cat==="all"||p.cat===S.cat)&&(!q||p.name.toLowerCase().includes(q))&&(!S.onlySO||isSO(p)||p.soldOut||(p.soldOutSizes||[]).length||p.colors.some(c=>c.soldOut)));
+  $("#list").innerHTML=vis.length?vis.map(card).join(""):`<div class="empty">Không có sản phẩm nào.</div>`}
+function card(p){
+  const so=isSO(p),sizes=p.prices?["M","L"].map(s=>{const off=(p.soldOutSizes||[]).includes(s);return `<button class="vc sz${off?" off":""}" data-act="size" data-id="${esc(p.id)}" data-key="${s}" title="Bấm để bật/tắt hết hàng size ${s}"><span>Size ${s}</span><em>${off?"Hết":"Còn"}</em></button>`}).join(""):"";
+  const cols=p.colors.map(c=>`<button class="vc${c.soldOut?" off":""}" data-act="color" data-id="${esc(p.id)}" data-key="${esc(c.key)}" title="Bấm để bật/tắt hết hàng màu ${esc(c.vi)}"><i style="background:${esc(c.hex)}"></i><span>${esc(c.vi)}</span><em>${c.soldOut?"Hết":"Còn"}</em></button>`).join("");
+  const i=S.products.indexOf(p);
+  return `<article class="card${so?" so":""}${p.hidden?" hid":""}" data-id="${esc(p.id)}">
+  <img class="th" src="${esc(imgUrl(p.image))}" alt="" loading="lazy">
+  <div class="mid"><h3>${esc(p.name)} <span class="pill">${CATS[p.cat]||p.cat}</span>${p.hidden?' <span class="pill bad">Đang ẩn</span>':""}${derivedSO(p)?' <span class="pill bad">Hết mọi phân loại</span>':""}</h3>
+    <div class="price">${priceText(p)}</div>
+    ${sizes||cols?`<div class="var">${sizes?`<span class="lbl">Size</span>${sizes}`:""}${cols?`<span class="lbl">Màu</span>${cols}`:""}</div>`:""}</div>
+  <div class="act">
+    <button class="sw" role="switch" aria-checked="${!p.soldOut}" data-act="prod" data-id="${esc(p.id)}"><span class="knob">${p.soldOut?"✕":"✓"}</span><span>${p.soldOut?"Hết hàng":"Còn hàng"}</span></button>
+    <div class="row2"><button class="ico" data-act="up" data-id="${esc(p.id)}" aria-label="Đưa lên" ${i<=0?"disabled":""}>↑</button><button class="ico" data-act="down" data-id="${esc(p.id)}" aria-label="Đưa xuống" ${i>=S.products.length-1?"disabled":""}>↓</button><button class="btn sm" data-act="edit" data-id="${esc(p.id)}">Sửa</button></div>
+  </div></article>`}
+
+$("#cats").onclick=e=>{const b=e.target.closest("[data-cat]");if(b){S.cat=b.dataset.cat;render()}};
+$("#q").oninput=e=>{S.q=e.target.value;render()};
+$("#onlySO").onchange=e=>{S.onlySO=e.target.checked;render()};
+$("#list").onclick=async e=>{
+  const b=e.target.closest("[data-act]");if(!b)return;const id=b.dataset.id,p=S.products.find(x=>x.id===id);if(!p)return;
+  const act=b.dataset.act;
+  if(act==="edit")return openEdit(p);
+  if(act==="up"||act==="down")return move(id,act==="up"?-1:1);
+  let scope,key,val;
+  if(act==="prod"){scope="product";val=!p.soldOut}
+  else if(act==="size"){scope="size";key=b.dataset.key;val=!(p.soldOutSizes||[]).includes(key)}
+  else if(act==="color"){scope="color";key=b.dataset.key;val=!p.colors.find(c=>c.key===key).soldOut}
+  const before=JSON.stringify(p);
+  // cập nhật ngay trên màn hình, lỗi thì hoàn lại
+  if(scope==="product")p.soldOut=val;else if(scope==="size"){const s=new Set(p.soldOutSizes||[]);val?s.add(key):s.delete(key);p.soldOutSizes=[...s]}else p.colors.find(c=>c.key===key).soldOut=val;
+  render();
+  try{const j=await post("toggle",{id,scope,key,soldOut:val});Object.assign(p,j.product);stamp();
+    toast((scope==="product"?p.name:scope==="size"?p.name+" · size "+key:p.name+" · "+p.colors.find(c=>c.key===key).vi)+(val?": đã đặt HẾT HÀNG":": đã CÒN HÀNG"));render()}
+  catch(x){Object.assign(p,JSON.parse(before));render();toast(x.message,true)}};
+
+async function move(id,dir){const a=S.products,i=a.findIndex(p=>p.id===id);let j=i+dir;while(j>=0&&j<a.length&&a[j].cat!==a[i].cat)j+=dir;if(j<0||j>=a.length)return;
+  [a[i],a[j]]=[a[j],a[i]];render();
+  try{await post("reorder",{ids:a.map(p=>p.id)});stamp()}catch(x){toast(x.message,true);boot()}}
+
+/* ---------- ảnh: nén rồi upload ---------- */
+async function compress(file){
+  const bmp=await createImageBitmap(file,{imageOrientation:"from-image"});
+  const max=1600,k=Math.min(1,max/Math.max(bmp.width,bmp.height));
+  const c=document.createElement("canvas");c.width=Math.round(bmp.width*k);c.height=Math.round(bmp.height*k);
+  const g=c.getContext("2d");g.fillStyle="#fff";g.fillRect(0,0,c.width,c.height);g.drawImage(bmp,0,0,c.width,c.height);
+  return new Promise((res,rej)=>c.toBlob(b=>b?res(b):rej(new Error("Không xử lý được ảnh")),"image/jpeg",.86))}
+async function uploadFile(file){
+  const blob=await compress(file);
+  const j=await api("upload",{method:"POST",headers:{"Content-Type":"image/jpeg"},body:blob});return j.url}
+function pickImages(multiple){return new Promise(res=>{const f=$("#file");f.value="";f.multiple=!!multiple;f.onchange=()=>res([...f.files]);f.click()})}
+async function withBusy(el,fn){const t=el.textContent;el.disabled=true;el.textContent="Đang tải…";try{await fn()}catch(x){toast(x.message,true)}el.disabled=false;el.textContent=t}
+
+/* ---------- dialog sửa / thêm ---------- */
+const blank=()=>({name:"",cat:"T",image:"",images:[],price:null,prices:null,descVi:"",descEn:"",specVi:"",specEn:"",soldOut:false,soldOutSizes:[],colors:[],hidden:false});
+$("#f_cat").innerHTML=Object.entries(CATS).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
+$("#add").onclick=()=>{editingId=null;draft=blank();drawEdit();$("#ed").showModal()};
+function openEdit(p){editingId=p.id;draft=JSON.parse(JSON.stringify(p));drawEdit();$("#ed").showModal()}
+$("#edx").onclick=$("#cancel").onclick=()=>$("#ed").close();
+
+function drawEdit(){
+  $("#edt").textContent=editingId?"Sửa sản phẩm":"Thêm sản phẩm";
+  $("#f_name").value=draft.name;$("#f_cat").value=draft.cat;
+  const mode=draft.prices?"two":draft.price!=null?"one":(editingId?"quote":"one");
+  document.querySelector(`input[name=pm][value=${mode}]`).checked=true;drawPrices();
+  $("#f_descVi").value=draft.descVi;$("#f_descEn").value=draft.descEn;$("#f_specVi").value=draft.specVi;$("#f_specEn").value=draft.specEn;
+  $("#f_so").checked=draft.soldOut;$("#f_hid").checked=draft.hidden;$("#ederr").textContent="";
+  $("#del").hidden=!editingId;drawImgs();drawColors()}
+function drawPrices(){const m=document.querySelector("input[name=pm]:checked").value;
+  $("#f_prices").innerHTML=m==="one"?`<label class="f"><span>Giá (nghìn đồng)</span><input type="number" id="p1" min="0" step="1" value="${draft.price??""}"></label>`
+   :m==="two"?`<label class="f"><span>Giá size M (nghìn đồng)</span><input type="number" id="p2a" min="0" step="1" value="${draft.prices?draft.prices[0]:""}"></label><label class="f"><span>Giá size L (nghìn đồng)</span><input type="number" id="p2b" min="0" step="1" value="${draft.prices?draft.prices[1]:""}"></label>`:""}
+$("#f_mode").onchange=()=>{collect();drawPrices()};
+
+function imTile(url,attrs){return `<div class="im"><img src="${esc(imgUrl(url))}" alt=""><button class="rm" type="button" ${attrs} aria-label="Xoá ảnh">×</button></div>`}
+function drawImgs(){
+  $("#f_main").innerHTML=(draft.image?imTile(draft.image,'data-rm="main"'):"")+`<button type="button" class="im add" id="upMain">${draft.image?"Đổi ảnh":"+ Tải ảnh lên"}</button>`;
+  $("#f_extra").innerHTML=draft.images.map((u,i)=>imTile(u,`data-rm="x${i}"`)).join("")+`<button type="button" class="im add" id="upExtra">+ Thêm ảnh</button>`}
+$("#f_main").onclick=async e=>{
+  if(e.target.closest("[data-rm]")){draft.image="";drawImgs();return}
+  const b=e.target.closest("#upMain");if(!b)return;const fs=await pickImages(false);if(!fs[0])return;
+  await withBusy(b,async()=>{draft.image=await uploadFile(fs[0]);drawImgs()})};
+$("#f_extra").onclick=async e=>{
+  const r=e.target.closest("[data-rm]");if(r){draft.images.splice(+r.dataset.rm.slice(1),1);drawImgs();return}
+  const b=e.target.closest("#upExtra");if(!b)return;const fs=await pickImages(true);if(!fs.length)return;
+  await withBusy(b,async()=>{for(const f of fs.slice(0,8-draft.images.length))draft.images.push(await uploadFile(f));drawImgs()})};
+
+function drawColors(){
+  $("#f_colors").innerHTML=draft.colors.map((c,i)=>`<div class="crow" data-i="${i}">
+    <input type="color" value="${esc(c.hex||"#dddddd")}" data-k="hex" aria-label="Chọn màu">
+    <input type="text" value="${esc(c.vi)}" data-k="vi" placeholder="Tên màu (VI)" maxlength="30" aria-label="Tên màu tiếng Việt">
+    <input type="text" class="en" value="${esc(c.en||"")}" data-k="en" placeholder="Color name (EN)" maxlength="30" aria-label="Tên màu tiếng Anh">
+    <button type="button" class="cimg" data-a="img" style="${c.image?`background-image:url('${esc(imgUrl(c.image))}')`:""}">${c.image?"":"Ảnh màu"}</button>
+    <div class="cx"><label class="chk"><input type="checkbox" data-k="soldOut" ${c.soldOut?"checked":""}> Hết</label>${c.image?'<button type="button" class="btn sm" data-a="noimg">Bỏ ảnh</button>':""}<button type="button" class="btn sm danger" data-a="rm">Xoá</button></div></div>`).join("")}
+$("#addColor").onclick=()=>{collect();draft.colors.push({vi:"",en:"",hex:"#f5c6d2",image:"",soldOut:false});drawColors()};
+$("#f_colors").oninput=e=>{const r=e.target.closest(".crow"),k=e.target.dataset.k;if(!r||!k)return;const c=draft.colors[+r.dataset.i];c[k]=e.target.type==="checkbox"?e.target.checked:e.target.value};
+$("#f_colors").onclick=async e=>{const r=e.target.closest(".crow"),a=e.target.closest("[data-a]");if(!r||!a)return;const i=+r.dataset.i;
+  if(a.dataset.a==="rm"){draft.colors.splice(i,1);drawColors();return}
+  if(a.dataset.a==="noimg"){draft.colors[i].image="";drawColors();return}
+  if(a.dataset.a==="img"){const fs=await pickImages(false);if(fs[0])await withBusy(a,async()=>{draft.colors[i].image=await uploadFile(fs[0]);drawColors()})}};
+
+function collect(){
+  draft.name=$("#f_name").value;draft.cat=$("#f_cat").value;
+  draft.descVi=$("#f_descVi").value;draft.descEn=$("#f_descEn").value;draft.specVi=$("#f_specVi").value;draft.specEn=$("#f_specEn").value;
+  draft.soldOut=$("#f_so").checked;draft.hidden=$("#f_hid").checked;
+  const m=document.querySelector("input[name=pm]:checked").value;
+  if($("#p1")||$("#p2a")){
+    if(m==="one"){draft.price=$("#p1")&&$("#p1").value!==""?+$("#p1").value:null;draft.prices=null}
+    else if(m==="two"){const a=$("#p2a"),b=$("#p2b");draft.prices=a&&b&&a.value!==""&&b.value!==""?[+a.value,+b.value]:null;draft.price=null}}
+  if(m==="quote"){draft.price=null;draft.prices=null}}
+
+$("#eform").addEventListener("submit",async e=>{e.preventDefault();collect();const err=$("#ederr");err.textContent="";
+  const m=document.querySelector("input[name=pm]:checked").value;
+  if(!draft.name.trim())return err.textContent="Bạn nhập tên sản phẩm nhé.";
+  if(!draft.image)return err.textContent="Bạn thêm ảnh chính cho sản phẩm nhé.";
+  if(m==="one"&&draft.price==null)return err.textContent="Bạn nhập giá bán nhé (hoặc chọn \"Chưa niêm yết\").";
+  if(m==="two"&&!draft.prices)return err.textContent="Bạn nhập đủ giá size M và L nhé.";
+  if(draft.colors.some(c=>!c.vi.trim()))return err.textContent="Mỗi màu cần có tên (hoặc bấm Xoá màu trống).";
+  if(editingId)draft.id=editingId;
+  const b=$("#save");b.disabled=true;
+  try{const j=await post("product",draft,"PUT");const i=S.products.findIndex(p=>p.id===j.product.id);if(i>=0)S.products[i]=j.product;else S.products.push(j.product);
+    $("#ed").close();render();stamp();toast("Đã lưu “"+j.product.name+"”")}
+  catch(x){err.textContent=x.message}b.disabled=false});
+
+$("#del").onclick=async()=>{if(!editingId)return;if(!confirm("Xoá hẳn “"+draft.name+"” khỏi shop? Nếu chỉ muốn tạm ngưng bán, hãy dùng công tắc Hết hàng hoặc tick “Ẩn khỏi shop”."))return;
+  try{await api("product?id="+encodeURIComponent(editingId),{method:"DELETE"});S.products=S.products.filter(p=>p.id!==editingId);$("#ed").close();render();stamp();toast("Đã xoá sản phẩm")}
+  catch(x){$("#ederr").textContent=x.message}};
+
+if(token)boot();else showLogin();
+</script>
+</body>
+</html>
