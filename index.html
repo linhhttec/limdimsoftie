@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="only light">
+<meta name="supported-color-schemes" content="light">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>limdim.softie — túi vải hoa & cói handmade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Allura&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="veil"></div><img class="strip" src="images/flower-strip.jpg" alt="">
+<header class="top">
+<a class="brand" href="#top"><b class="logo" role="img" aria-label="limdim.softie"></b></a>
+<nav class="menu glass" aria-label="Menu"><a href="#ms-C" data-go="C" data-t="n1"></a><a href="#shop" data-go="shop" data-t="n2"></a><a href="#feedback" data-t="n5"></a></nav>
+<div class="tools"><button type="button" class="cartbtn glass" data-order aria-label="Giỏ hàng"><svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 13c0-5 3-8 7-8s7 3 7 8"/><path d="M4 13h24l-2.4 11.2a3 3 0 0 1-2.9 2.3H9.3a3 3 0 0 1-2.9-2.3z"/><path d="M10 17l.8 6M16 17v6M22 17l-.8 6M6.5 20h19"/></svg><span class="bdg" data-cnt>0</span></button><div class="lang glass" role="group" aria-label="Language"><button data-l="vi">VI</button><button data-l="en">EN</button></div></div>
+</header>
+<main id="top">
+<div class="wrap hero">
+<h1 class="serif" data-t="h1"></h1>
+<div class="ctas"><button type="button" class="igbtn" data-order data-t="cta1"></button><a class="btn3" href="#ms-C" data-go="C" data-t="cta2"></a></div>
+</div>
+<section id="shop"><div class="wrap">
+<div class="shophead"><div class="mnav" id="mnav"></div></div>
+<div id="mbody1a"></div>
+<div class="sheet glass" id="mini"><span class="lbl" data-t="miniL"></span><h3 class="serif" data-t="miniH"></h3><div class="spread"><img src="images/catalog.jpg" alt="Product catalog: Cói Mơ, Cói San"><img src="images/size-guide.jpg" alt="Kích thước túi cói"></div>
+<div class="subbook" id="cam-nang">
+<h4 class="serif" data-t="bkH"></h4>
+<p class="lead" data-t="bkP"></p>
+<div class="bookwrap"><div class="book" id="book" tabindex="0" data-al="bkA"></div></div>
+<div class="ctrl"><button class="glass" id="prev" data-al="prev">‹</button><div class="pg glass lbl" id="pg" aria-live="polite"></div><button class="glass" id="next" data-al="next">›</button></div>
+<div class="gloss glass" id="gloss" lang="en"></div>
+</div></div>
+<div id="mbody1b"></div>
+</div></section>
+<section id="shop2"><div class="wrap" style="padding-top:clamp(50px,7vw,90px)"><div id="mbody2"></div></div></section>
+
+<section id="feedback"><div class="wrap"><div class="wall glass">
+<div class="wallhead"><h2 class="serif" data-t="fbH"></h2></div>
+<div id="lines"></div>
+<p class="lbl drag-hint" data-t="fbS"></p>
+</div></div></section>
+</main>
+
+<footer><div class="wrap"><p class="serif">limdim.softie</p><p class="lbl"><a href="#" data-order data-t="ftOrder"></a> · <a href="https://www.instagram.com/limdim.softie" target="_blank" rel="noopener">Instagram @limdim.softie</a></p></div></footer>
+<dialog id="lb"><img id="lbi" alt=""></dialog>
+<dialog id="pm"><div class="pmw glass"><button class="pmx" id="pmx">×</button>
+<div><div class="ph"><img id="pmi" alt=""></div><div class="thumbs" id="pmt"></div></div>
+<div class="pmi"><span class="lbl" id="pmc"></span><h3 class="serif" id="pmn"></h3><p class="pprice" id="pmp"></p><p class="md" id="pmd" style="margin:0 0 12px"></p><div id="pms"></div>
+<div class="qtyrow" id="pmq"></div>
+<div class="pbtns"><button type="button" class="igbtn" id="addbtn"></button><button type="button" class="btn3" id="buynow"></button></div>
+<p class="small" id="pmn2"></p><button class="del" id="pmcare" hidden></button></div></div></dialog>
+<button type="button" class="ordfab" id="ordfab"><svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 13c0-5 3-8 7-8s7 3 7 8"/><path d="M4 13h24l-2.4 11.2a3 3 0 0 1-2.9 2.3H9.3a3 3 0 0 1-2.9-2.3z"/><path d="M10 17l.8 6M16 17v6M22 17l-.8 6M6.5 20h19"/></svg><span class="bdg" data-cnt>0</span></button>
+<dialog id="order"><div class="ordw glass"><button class="pmx" id="ordx" type="button" aria-label="Close">×</button>
+<div id="ordv1">
+<span class="lbl" data-t="o_lbl"></span><h3 class="serif" data-t="o_h"></h3>
+<form id="orderForm" name="don-hang" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field">
+<input type="hidden" name="form-name" value="don-hang">
+<p class="hp" hidden><label>Đừng điền vào ô này: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+<div class="fgrp"><span class="lbl" data-t="o_items"></span><ul class="ordlist" id="ordItems"></ul></div>
+<label class="fld"><span class="lbl" data-t="o_name"></span><input type="text" name="name" required autocomplete="name"></label>
+<label class="fld"><span class="lbl" data-t="o_phone"></span><input type="tel" name="phone" required autocomplete="tel" inputmode="tel" pattern="[0-9+ .\-]{9,16}" data-ph="o_phoneP"></label>
+<label class="fld"><span class="lbl" data-t="o_addr"></span><textarea name="address" rows="2" required autocomplete="street-address"></textarea></label>
+<fieldset class="fgrp pay"><legend class="lbl" data-t="o_pay"></legend>
+<label class="payopt"><input type="radio" name="payment" value="Chuyển khoản Full" required><span><b data-t="o_payFull"></b><small data-t="o_payFullD"></small></span></label>
+<label class="payopt"><input type="radio" name="payment" value="COD (Cọc 50k)"><span><b data-t="o_payCod"></b><small data-t="o_payCodD"></small></span></label>
+</fieldset>
+<label class="fld"><span class="lbl" data-t="o_note"></span><textarea name="note" rows="2"></textarea></label>
+<div class="tot" id="ordTot"></div>
+<input type="hidden" name="products"><input type="hidden" name="subtotal"><input type="hidden" name="shipping"><input type="hidden" name="total"><input type="hidden" name="pay_now"><input type="hidden" name="order_code">
+<p class="err" id="ordErr" role="alert" hidden></p>
+<button type="submit" class="igbtn wide" id="ordBtn"></button>
+</form></div>
+<div id="ordv2" role="status" hidden></div>
+</div></dialog>
+<div id="toast" role="status"></div>
+<script src="script.js"></script>
+</body>
+</html>
