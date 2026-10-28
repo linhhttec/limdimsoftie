@@ -1,0 +1,4 @@
+[build]
+  publish = "."
+
+# Netlify Forms tự nhận form "don-hang" trong index.html khi deploy.
